@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: devsecops-app:latest
+    container_name: devsecops_app_container
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    # [DEVSECOPS BEST PRACTICE] Batasi resource atau gunakan security options jika perlu
+    read_only: false
+    security_opt:
+      - no-new-privileges:true
