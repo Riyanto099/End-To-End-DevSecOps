@@ -1,11 +1,22 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
-  res.send('Hello from End-to-End DevSecOps Pipeline!');
+  res.json({
+    application: "End-to-End DevSecOps Demo",
+    version: "1.0.0",
+    status: "running"
+  });
 });
 
-app.listen(port, () => {
-  console.log(`App running on http://localhost:${port}`);
+app.get('/health', (req, res) => {
+  res.json({
+    status: "healthy",
+    uptime: process.uptime()
+  });
+});
+
+app.listen(PORT, () => {
+  console.log(`Application is running on port ${PORT}`);
 });
