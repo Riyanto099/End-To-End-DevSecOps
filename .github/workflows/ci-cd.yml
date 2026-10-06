@@ -1,4 +1,4 @@
-name: CI/CD & DevSecOps Pipeline
+name: CI/CD Pipeline
 
 on:
   push:
@@ -7,11 +7,12 @@ on:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
-    step
+
+    steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-   - name: Log in to Docker Hub
+      - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -23,5 +24,5 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ secrets.DOCKER_USERNAME }}/my-app:${{ github.sha }}
-            ${{ secrets.DOCKER_USERNAME }}/my-app:latest
+            ${{ secrets.DOCKER_USERNAME }}/ci-cd-github-actions:${{ github.sha }}
+            ${{ secrets.DOCKER_USERNAME }}/ci-cd-github-actions:latest
