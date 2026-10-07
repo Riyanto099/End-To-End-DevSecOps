@@ -23,4 +23,4 @@ jobs:
       with:
         context: .
         push: true
-        tags: ${{ secrets.DOCKER_USERNAME }}/nama-app:latest
+        tags: ${{ secrets.DOCKER_USERNAME }}/end-to-end-devsecops:latest
